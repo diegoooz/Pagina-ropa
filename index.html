@@ -6,7 +6,7 @@
   <title>UUP Studio | Urban Underground Professional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -54,10 +54,10 @@
     </section>
 
     <section class="brand-concept reveal" id="brandConcept">
-      <div class="concept-grid">
-        <p>Arquitectura textil.</p>
-        <p>Negro absoluto.</p>
-        <p>Actitud profesional callejera.</p>
+      <div class="concept-art">
+        <p class="concept-line light">Sastrería urbana para visión contemporánea.</p>
+        <p class="concept-line heavy">NEGRO ABSOLUTO</p>
+        <p class="concept-line light shift">líneas técnicas, ritmo callejero, ejecución premium.</p>
       </div>
     </section>
 
@@ -68,7 +68,9 @@
       </div>
       <div class="carousel-wrap">
         <button class="carousel-nav" id="prevFeatured" aria-label="Anterior">←</button>
-        <div class="carousel-track" id="featuredTrack"></div>
+        <div class="carousel-viewport" id="carouselViewport">
+          <div class="carousel-track" id="featuredTrack"></div>
+        </div>
         <button class="carousel-nav" id="nextFeatured" aria-label="Siguiente">→</button>
       </div>
     </section>
@@ -102,7 +104,7 @@
     <ul id="cartItems"></ul>
     <div class="cart-footer">
       <p>Total: <strong id="cartTotal">$0</strong></p>
-      <a id="checkoutWhatsapp" class="cta-btn" target="_blank" rel="noopener">Checkout WhatsApp</a>
+      <a id="checkoutWhatsapp" class="cta-btn" target="_blank" rel="noopener">Finalizar en WhatsApp</a>
     </div>
   </aside>
 
@@ -121,8 +123,8 @@
           <input id="modalQty" type="number" min="1" value="1" />
         </label>
         <div class="modal-actions">
-          <button id="addToCartBtn" class="cta-btn">Añadir al carrito</button>
-          <a id="buyNowBtn" class="cta-btn ghost" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+          <button id="addToCartBtn" class="cta-btn ghost">Añadir al carrito</button>
+          <a id="buyNowBtn" class="cta-btn">Comprar por WhatsApp</a>
         </div>
       </div>
     </article>
