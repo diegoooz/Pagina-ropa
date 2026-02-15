@@ -51,30 +51,37 @@ button, input, select { font-family: inherit; }
 .submenu button { width: 100%; text-align: left; color: var(--muted); padding: .4rem 0; }
 
 section { padding: 5rem 1.4rem 3rem; }
-.hero { height: 100vh; position: relative; overflow: hidden; padding: 0; }
+.hero { height: 100vh; position: relative; overflow: hidden; padding: 0; background: #000; }
+.hero-half { position: absolute; inset: 0; overflow: hidden; background: #000; }
+.hero-half.hero-left { clip-path: polygon(0 0, 68% 0, 42% 100%, 0 100%); }
+.hero-half.hero-right { clip-path: polygon(68% 0, 100% 0, 100% 100%, 42% 100%); }
 .hero-layer {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
+  background-color: #000;
   transition: transform var(--time-hero) var(--hero-ease), opacity var(--time-hero) var(--hero-ease);
   will-change: transform, opacity;
 }
-.hero-left { clip-path: polygon(0 0, 68% 0, 42% 100%, 0 100%); background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80"); }
-.hero-right { clip-path: polygon(68% 0, 100% 0, 100% 100%, 42% 100%); background-image: url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=1400&q=80"); }
-.hero-left.is-exiting { transform: translateY(52px); opacity: 0; }
-.hero-right.is-exiting { transform: translateY(-52px); opacity: 0; }
+.hero-layer.next { z-index: 1; }
+.hero-layer.current { z-index: 2; }
+.hero-half.hero-left .hero-layer.current.is-exiting { transform: translateY(52px); opacity: 0; }
+.hero-half.hero-right .hero-layer.current.is-exiting { transform: translateY(-52px); opacity: 0; }
 .hero-overlay { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg, transparent 48%, rgba(255,255,255,0.15) 50%, transparent 52%); mix-blend-mode: overlay; }
 
-.brand-concept { min-height: 48vh; display: grid; place-items: center; }
-.concept-art {
-  width: min(980px, 100%);
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 1rem 1.5rem;
+.brand-concept {
+  min-height: 36vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4rem 1.4rem 3rem;
 }
-.concept-line { border-radius: var(--radius); padding: 1rem 1.1rem; background: var(--surface); letter-spacing: .01em; }
-.concept-line.light { font-weight: 300; font-size: clamp(1rem, 2.1vw, 1.35rem); color: #dfdfdf; }
-.concept-line.heavy { font-weight: 800; font-size: clamp(1.35rem, 4vw, 2.6rem); line-height: 1; align-self: end; text-align: right; }
-.concept-line.shift { grid-column: 2 / 3; transform: translateY(-20px); }
+.brand-copy {
+  max-width: 760px;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.3vw, 1.6rem);
+  line-height: 1.6;
+  letter-spacing: .01em;
+}
 
 .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .link-btn { text-decoration: underline; text-underline-offset: 4px; }
@@ -83,16 +90,18 @@ section { padding: 5rem 1.4rem 3rem; }
 .carousel-viewport { overflow: hidden; }
 .carousel-track {
   display: flex;
+  gap: 20px;
   transition: transform 1.2s var(--hero-ease);
   will-change: transform;
 }
 .product-card {
-  flex: 0 0 calc(100% / 3);
+  flex: 0 0 calc((100% - 40px) / 3);
   padding: .7rem;
   background: var(--surface-soft);
   border-radius: var(--radius);
   position: relative;
   cursor: pointer;
+  overflow: hidden;
 }
 .product-card h3, .catalog-card h3 { margin-top: .55rem; font-size: .95rem; }
 .product-card p, .catalog-card p { margin-top: .35rem; color: var(--muted); }
@@ -188,12 +197,12 @@ section { padding: 5rem 1.4rem 3rem; }
 
 @media (max-width: 900px) {
   .search-wrap.active input { width: 130px; }
-  .concept-art { grid-template-columns: 1fr; }
-  .concept-line.heavy { text-align: left; }
-  .concept-line.shift { grid-column: auto; transform: none; }
-  .product-card { flex-basis: 100%; }
+    .brand-concept { padding: 3rem 1.2rem 2.5rem; }
+  .brand-copy { padding-left: .3rem; }
+  .product-card { flex: 0 0 100%; }
+  .carousel-track { gap: 20px; }
   .product-modal { grid-template-columns: 1fr; }
   .modal-actions { grid-template-columns: 1fr; }
-  .hero-left.is-exiting { transform: translateY(34px); }
-  .hero-right.is-exiting { transform: translateY(-34px); }
+  .hero-half.hero-left .hero-layer.current.is-exiting { transform: translateY(34px); }
+  .hero-half.hero-right .hero-layer.current.is-exiting { transform: translateY(-34px); }
 }
