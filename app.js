@@ -1,5 +1,4 @@
 const storeData = {
-  brand: "UUP STUDIO",
   whatsappNumber: "573000000000",
   heroImages: [
     "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80",
@@ -7,246 +6,201 @@ const storeData = {
     "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=80"
   ],
   products: [
-    {
-      id: 1,
-      name: "Camisa Concrete Line",
-      category: "Camisas",
-      price: 169000,
-      colors: ["Negro", "Gris Cemento", "Blanco"],
-      featured: true,
-      images: [
-        "https://images.unsplash.com/photo-1593032465171-8bd8f3d63ac5?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
-      ]
-    },
-    {
-      id: 2,
-      name: "Buzo Shadow Core",
-      category: "Buzos",
-      price: 219000,
-      colors: ["Negro", "Gris"],
-      featured: true,
-      images: [
-        "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80"
-      ]
-    },
-    {
-      id: 3,
-      name: "Chaqueta Asphalt Pro",
-      category: "Chaquetas",
-      price: 299000,
-      colors: ["Negro", "Grafito"],
-      featured: true,
-      images: [
-        "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80"
-      ]
-    },
-    {
-      id: 4,
-      name: "Gorra Transit",
-      category: "Gorras",
-      price: 99000,
-      colors: ["Negro", "Gris"],
-      featured: false,
-      images: [
-        "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
-      ]
-    },
-    {
-      id: 5,
-      name: "Camisa District Mono",
-      category: "Camisas",
-      price: 149000,
-      colors: ["Blanco", "Negro"],
-      featured: false,
-      images: [
-        "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
+    { id: 1, name: "Camisa Concrete Line", category: "Camisas", price: 169000, short: "Corte recto técnico con textura dry-touch.", colors: ["Negro", "Gris", "Blanco"], featured: true, images: ["https://images.unsplash.com/photo-1593032465171-8bd8f3d63ac5?auto=format&fit=crop&w=900&q=80", "https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=900&q=80"] },
+    { id: 2, name: "Buzo Shadow Core", category: "Buzos", price: 219000, short: "Volumen premium y caída urbana refinada.", colors: ["Negro", "Gris"], featured: true, images: ["https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80", "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"] },
+    { id: 3, name: "Chaqueta Asphalt Pro", category: "Chaquetas", price: 299000, short: "Protección ligera con lenguaje sartorial street.", colors: ["Negro", "Grafito"], featured: true, images: ["https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=900&q=80", "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80"] },
+    { id: 4, name: "Gorra Transit", category: "Gorras", price: 99000, short: "Línea clean para finishing urbano.", colors: ["Negro", "Gris"], featured: false, images: ["https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80"] },
+    { id: 5, name: "Camisa District Mono", category: "Camisas", price: 149000, short: "Base minimal para layering profesional.", colors: ["Blanco", "Negro"], featured: false, images: ["https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80"] }
   ]
 };
 
-const state = { cart: [], selected: null, categoryFilter: null };
+const state = { cart: [], selected: null, filter: 'Todos', search: '' };
 
-const heroSlider = document.getElementById("heroSlider");
-const featuredTrack = document.getElementById("featuredTrack");
-const featuredPreview = document.getElementById("featuredPreview");
-const galleryGrid = document.getElementById("galleryGrid");
-const catalogGrid = document.getElementById("catalogGrid");
-const modal = document.getElementById("productModal");
-const cartSidebar = document.getElementById("cartSidebar");
+const heroSlider = document.getElementById('heroSlider');
+const featuredTrack = document.getElementById('featuredTrack');
+const galleryGrid = document.getElementById('galleryGrid');
+const catalogGrid = document.getElementById('catalogGrid');
+const catalog = document.getElementById('catalog');
+const mainContent = document.getElementById('mainContent');
+const overlay = document.getElementById('productOverlay');
 
-function formatCOP(value) {
-  return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(value);
-}
+const formatCOP = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
 
-function startHeroSlider() {
-  let index = 0;
-  heroSlider.style.backgroundImage = `url(${storeData.heroImages[index]})`;
-  setInterval(() => {
-    index = (index + 1) % storeData.heroImages.length;
-    heroSlider.style.backgroundImage = `url(${storeData.heroImages[index]})`;
-  }, 4200);
-}
-
-function productCardTemplate(product, type = "catalog") {
+function cardTemplate(product, cls = 'product-card') {
   return `
-    <article class="${type}-item product-card" data-id="${product.id}">
+    <article class="${cls}" data-id="${product.id}">
       <img src="${product.images[0]}" alt="${product.name}" />
       <h3>${product.name}</h3>
       <p>${product.category} · ${formatCOP(product.price)}</p>
+      <div class="hover-tooltip">
+        <p>${product.short}</p>
+        <strong>${formatCOP(product.price)}</strong>
+      </div>
     </article>
   `;
 }
 
-function renderFeatured() {
-  const featured = storeData.products.filter((p) => p.featured).slice(0, 3);
-  featuredTrack.innerHTML = featured.map((p) => productCardTemplate(p, "featured")).join("");
+function startHeroSlider() {
+  let idx = 0;
+  heroSlider.style.backgroundImage = `url(${storeData.heroImages[idx]})`;
+  setInterval(() => {
+    idx = (idx + 1) % storeData.heroImages.length;
+    heroSlider.style.backgroundImage = `url(${storeData.heroImages[idx]})`;
+  }, 4200);
+}
 
-  featuredTrack.querySelectorAll(".product-card").forEach((card) => {
-    const product = storeData.products.find((p) => p.id === Number(card.dataset.id));
-    card.addEventListener("mouseenter", () => showPreview(product));
-    card.addEventListener("click", () => openModal(product));
+function bindProductClicks(scope) {
+  scope.querySelectorAll('[data-id]').forEach((node) => {
+    node.addEventListener('click', () => {
+      const product = storeData.products.find((item) => item.id === Number(node.dataset.id));
+      openProduct(product);
+    });
   });
 }
 
-function showPreview(product) {
-  featuredPreview.classList.add("active");
-  featuredPreview.innerHTML = `
-    <img src="${product.images[0]}" alt="Preview ${product.name}" />
-    <div>
-      <h4>${product.name}</h4>
-      <p>${formatCOP(product.price)}</p>
-      <div class="preview-thumbs">
-        ${product.images.slice(0, 3).map((image) => `<img src="${image}" alt="${product.name}" />`).join("")}
-      </div>
-    </div>
-  `;
+function renderFeatured() {
+  featuredTrack.innerHTML = storeData.products.filter((p) => p.featured).slice(0, 3).map((p) => cardTemplate(p)).join('');
+  bindProductClicks(featuredTrack);
 }
 
 function renderGallery() {
-  const items = storeData.products.slice(0, 4);
-  galleryGrid.innerHTML = items.map((p) => `
-    <article class="gallery-item" data-id="${p.id}">
-      <img src="${p.images[1] || p.images[0]}" alt="${p.name}" />
-      <h3>${p.name}</h3>
-      <p>${formatCOP(p.price)}</p>
-    </article>
-  `).join("");
+  galleryGrid.innerHTML = storeData.products.slice(0, 4).map((p) => cardTemplate(p, 'gallery-item')).join('');
+  bindProductClicks(galleryGrid);
+}
 
-  galleryGrid.querySelectorAll(".gallery-item").forEach((item) => {
-    const product = storeData.products.find((p) => p.id === Number(item.dataset.id));
-    item.addEventListener("click", () => openModal(product));
+function getFilteredProducts() {
+  return storeData.products.filter((product) => {
+    const matchesCategory = state.filter === 'Todos' || product.category === state.filter;
+    const query = state.search.trim().toLowerCase();
+    const matchesSearch = !query || product.name.toLowerCase().includes(query) || product.category.toLowerCase().includes(query);
+    return matchesCategory && matchesSearch;
   });
 }
 
 function renderCatalog() {
-  const products = state.categoryFilter
-    ? storeData.products.filter((p) => p.category === state.categoryFilter)
-    : storeData.products;
+  catalogGrid.innerHTML = getFilteredProducts().map((product) => cardTemplate(product)).join('');
+  bindProductClicks(catalogGrid);
+}
 
-  catalogGrid.innerHTML = products.map((p) => productCardTemplate(p, "catalog")).join("");
-  catalogGrid.querySelectorAll(".product-card").forEach((card) => {
-    const product = storeData.products.find((p) => p.id === Number(card.dataset.id));
-    card.addEventListener("click", () => openModal(product));
+function renderFilters() {
+  const filters = ['Todos', ...new Set(storeData.products.map((p) => p.category))];
+  const container = document.getElementById('catalogFilters');
+  container.innerHTML = filters.map((filter) => `<button class="filter-btn ${state.filter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('');
+  container.querySelectorAll('.filter-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      state.filter = button.dataset.filter;
+      renderFilters();
+      renderCatalog();
+    });
   });
 }
 
-function openModal(product) {
-  state.selected = product;
-  document.getElementById("modalImage").src = product.images[0];
-  document.getElementById("modalTitle").textContent = product.name;
-  document.getElementById("modalPrice").textContent = formatCOP(product.price);
-  document.getElementById("modalQty").value = 1;
-  document.getElementById("modalColor").innerHTML = product.colors.map((color) => `<option value="${color}">${color}</option>`).join("");
-  modal.classList.remove("hidden");
+function openCatalog(filter = 'Todos') {
+  state.filter = filter;
+  renderFilters();
+  renderCatalog();
+  mainContent.classList.add('hidden');
+  catalog.classList.remove('hidden');
+  document.getElementById('menuPanel').classList.remove('active');
 }
 
-function closeModal() { modal.classList.add("hidden"); }
+function openProduct(product) {
+  state.selected = product;
+  document.getElementById('modalImage').src = product.images[0];
+  document.getElementById('modalTitle').textContent = product.name;
+  document.getElementById('modalDescription').textContent = product.short;
+  document.getElementById('modalPrice').textContent = formatCOP(product.price);
+  document.getElementById('modalColor').innerHTML = product.colors.map((color) => `<option value="${color}">${color}</option>`).join('');
+  document.getElementById('modalQty').value = 1;
+  overlay.classList.remove('hidden');
+  requestAnimationFrame(() => overlay.classList.add('show'));
+}
+
+function closeProduct() {
+  overlay.classList.remove('show');
+  setTimeout(() => overlay.classList.add('hidden'), 220);
+}
 
 function addToCart() {
   if (!state.selected) return;
-  const qty = Number(document.getElementById("modalQty").value);
-  const color = document.getElementById("modalColor").value;
+  const qty = Number(document.getElementById('modalQty').value);
+  const color = document.getElementById('modalColor').value;
   state.cart.push({ ...state.selected, qty, color });
   updateCart();
-  closeModal();
-}
-
-function updateCart() {
-  const cartItems = document.getElementById("cartItems");
-  const cartCount = document.getElementById("cartCount");
-  const cartTotal = document.getElementById("cartTotal");
-
-  cartItems.innerHTML = state.cart.map((item) => `
-    <li>${item.name} (${item.color}) x${item.qty} - ${formatCOP(item.price * item.qty)}</li>
-  `).join("");
-
-  const total = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  cartCount.textContent = String(state.cart.reduce((sum, item) => sum + item.qty, 0));
-  cartTotal.textContent = formatCOP(total);
-  document.getElementById("checkoutWhatsapp").href = buildWhatsappLink(total);
+  closeProduct();
 }
 
 function buildWhatsappLink(total) {
   if (!state.cart.length) return `https://wa.me/${storeData.whatsappNumber}`;
-  const summary = state.cart.map((item) => `• ${item.name} (${item.color}) x${item.qty}`).join("\n");
-  const text = `Hola, quiero finalizar mi pedido:%0A${encodeURIComponent(summary)}%0ATotal: ${encodeURIComponent(formatCOP(total))}`;
+  const items = state.cart.map((i) => `• ${i.name} (${i.color}) x${i.qty}`).join('\n');
+  const text = encodeURIComponent(`Hola, quiero finalizar mi pedido:\n${items}\nTotal: ${formatCOP(total)}`);
   return `https://wa.me/${storeData.whatsappNumber}?text=${text}`;
 }
 
-function setupObservers() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-  }, { threshold: 0.25, rootMargin: "0px 0px -40px 0px" });
+function updateCart() {
+  document.getElementById('cartItems').innerHTML = state.cart.map((item) => `<li>${item.name} (${item.color}) x${item.qty} · ${formatCOP(item.qty * item.price)}</li>`).join('');
+  const qty = state.cart.reduce((acc, item) => acc + item.qty, 0);
+  const total = state.cart.reduce((acc, item) => acc + item.qty * item.price, 0);
+  document.getElementById('cartCount').textContent = String(qty);
+  document.getElementById('cartTotal').textContent = formatCOP(total);
+  document.getElementById('checkoutWhatsapp').href = buildWhatsappLink(total);
+}
 
-  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+function setupObserver() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('visible'));
+  }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 }
 
 function bindUI() {
-  document.querySelector(".menu-toggle").addEventListener("click", () => {
-    document.getElementById("mobileMenu").classList.toggle("active");
+  document.getElementById('searchToggle').addEventListener('click', () => {
+    const wrap = document.getElementById('searchWrap');
+    wrap.classList.toggle('active');
+    if (wrap.classList.contains('active')) document.getElementById('searchInput').focus();
   });
 
-  document.querySelectorAll("#mobileMenu a").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      state.categoryFilter = link.dataset.category;
-      renderCatalog();
-      document.getElementById("mainContent").classList.add("hidden");
-      document.getElementById("catalog").classList.remove("hidden");
-      document.getElementById("mobileMenu").classList.remove("active");
-    });
-  });
-
-  document.getElementById("viewMoreBtn").addEventListener("click", () => {
+  document.getElementById('searchInput').addEventListener('input', (event) => {
+    state.search = event.target.value;
     renderCatalog();
-    document.getElementById("mainContent").classList.add("hidden");
-    document.getElementById("catalog").classList.remove("hidden");
   });
 
-  document.getElementById("backBtn").addEventListener("click", () => {
-    document.getElementById("catalog").classList.add("hidden");
-    document.getElementById("mainContent").classList.remove("hidden");
-    state.categoryFilter = null;
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('menuPanel').classList.toggle('active');
   });
 
-  document.querySelector(".cart-toggle").addEventListener("click", () => cartSidebar.classList.add("open"));
-  document.getElementById("closeCart").addEventListener("click", () => cartSidebar.classList.remove("open"));
+  document.getElementById('productsMenuBtn').addEventListener('click', () => openCatalog(state.filter));
+  document.getElementById('accordionToggle').addEventListener('click', (event) => {
+    event.stopPropagation();
+    document.getElementById('submenuCategories').classList.toggle('open');
+    event.currentTarget.classList.toggle('rotate');
+  });
 
-  document.getElementById("closeModal").addEventListener("click", closeModal);
-  document.getElementById("addToCartBtn").addEventListener("click", addToCart);
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) closeModal();
+  document.querySelectorAll('#submenuCategories button').forEach((button) => {
+    button.addEventListener('click', () => openCatalog(button.dataset.category));
+  });
+
+  document.getElementById('viewMoreBtn').addEventListener('click', () => openCatalog(state.filter));
+  document.getElementById('backBtn').addEventListener('click', () => {
+    catalog.classList.add('hidden');
+    mainContent.classList.remove('hidden');
+  });
+
+  document.getElementById('catalogSearch').addEventListener('input', (event) => {
+    state.search = event.target.value;
+    renderCatalog();
+  });
+
+  document.querySelector('.cart-toggle').addEventListener('click', () => document.getElementById('cartSidebar').classList.add('open'));
+  document.getElementById('closeCart').addEventListener('click', () => document.getElementById('cartSidebar').classList.remove('open'));
+
+  document.getElementById('addToCartBtn').addEventListener('click', addToCart);
+  document.getElementById('closeModal').addEventListener('click', closeProduct);
+  overlay.addEventListener('click', (event) => event.target === overlay && closeProduct());
+
+  document.getElementById('goHome').addEventListener('click', () => {
+    catalog.classList.add('hidden');
+    mainContent.classList.remove('hidden');
   });
 }
 
@@ -254,7 +208,8 @@ function bindUI() {
   startHeroSlider();
   renderFeatured();
   renderGallery();
+  renderFilters();
   renderCatalog();
-  setupObservers();
+  setupObserver();
   bindUI();
 })();
