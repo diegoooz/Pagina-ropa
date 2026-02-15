@@ -87,7 +87,7 @@ section { padding: 5rem 1.4rem 3rem; }
 .link-btn { text-decoration: underline; text-underline-offset: 4px; }
 .carousel-wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .6rem; }
 .carousel-nav { font-size: 1.3rem; color: #d2d2d2; }
-.carousel-viewport { overflow: hidden; }
+.carousel-viewport { overflow: hidden; touch-action: pan-y; }
 .carousel-track {
   display: flex;
   gap: 20px;
@@ -187,6 +187,29 @@ section { padding: 5rem 1.4rem 3rem; }
   margin-top: .6rem;
 }
 .close-modal { position: absolute; right: 1.2rem; top: 1rem; }
+
+.modal-media {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.modal-media img { border-radius: 0; }
+.modal-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.modal-gallery-nav.prev { left: .65rem; }
+.modal-gallery-nav.next { right: .65rem; }
 
 .main-footer { padding: 2rem 1.4rem 3rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
 .main-footer p { color: var(--muted); margin-top: .35rem; }
