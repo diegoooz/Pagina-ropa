@@ -1,3 +1,5 @@
+document.body.classList.add('js-enabled');
+
 const DataModule = (() => {
   const storeData = {
     whatsappNumber: '573000000000',
@@ -229,13 +231,19 @@ const UIModule = (() => {
   }
 
   function setupIntersectionObserver() {
+    const sections = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      sections.forEach((section) => section.classList.add('visible'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         entry.target.classList.toggle('visible', entry.isIntersecting);
       });
     }, { threshold: 0.2 });
 
-    document.querySelectorAll('.reveal').forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
   }
 
   function bindUI() {
