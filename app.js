@@ -4,18 +4,9 @@ const DataModule = (() => {
   const storeData = {
     whatsappNumber: '573000000000',
     heroPairs: [
-      {
-        left: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80',
-        right: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=1400&q=80'
-      },
-      {
-        left: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1400&q=80',
-        right: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=80'
-      },
-      {
-        left: 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=1400&q=80',
-        right: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1400&q=80'
-      }
+      { left: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80', right: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=1400&q=80' },
+      { left: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1400&q=80', right: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=80' },
+      { left: 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=1400&q=80', right: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1400&q=80' }
     ],
     showcase: [
       { image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80', copy: 'Monocromía editorial con precisión urbana.' },
@@ -23,111 +14,13 @@ const DataModule = (() => {
       { image: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1600&q=80', copy: 'Streetwear de lujo funcional.' }
     ],
     products: [
-      {
-        id: 1,
-        name: 'Camisa Concrete Line',
-        category: 'Camisas',
-        price: 169000,
-        short: 'Corte recto técnico.',
-        colors: ['Negro', 'Gris', 'Blanco'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1593032465171-8bd8f3d63ac5?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 2,
-        name: 'Camisa District Mono',
-        category: 'Camisas',
-        price: 149000,
-        short: 'Base clean de layering.',
-        colors: ['Blanco', 'Negro'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 3,
-        name: 'Buzo Shadow Core',
-        category: 'Buzos',
-        price: 219000,
-        short: 'Volumen premium.',
-        colors: ['Negro', 'Gris'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 4,
-        name: 'Buzo Midnight Crew',
-        category: 'Buzos',
-        price: 239000,
-        short: 'Caída pesada y suave.',
-        colors: ['Negro', 'Carbón'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 5,
-        name: 'Chaqueta Asphalt Pro',
-        category: 'Chaquetas',
-        price: 299000,
-        short: 'Protección ligera urbana.',
-        colors: ['Negro', 'Grafito'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 6,
-        name: 'Chaqueta Urban Draft',
-        category: 'Chaquetas',
-        price: 329000,
-        short: 'Estructura técnica premium.',
-        colors: ['Negro'],
-        featured: true,
-        images: [
-          'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80'
-        ]
-      },
-      {
-        id: 7,
-        name: 'Gorra Transit',
-        category: 'Gorras',
-        price: 99000,
-        short: 'Finishing urbano clean.',
-        colors: ['Negro', 'Gris'],
-        featured: false,
-        images: [
-          'https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80'
-        ]
-      }
+      { id: 1, name: 'Camisa Concrete Line', category: 'Camisas', price: 169000, short: 'Corte recto técnico.', colors: ['Negro', 'Gris', 'Blanco'], featured: true, images: ['1','2','3','4'] },
+      { id: 2, name: 'Camisa District Mono', category: 'Camisas', price: 149000, short: 'Base clean de layering.', colors: ['Blanco', 'Negro'], featured: true, images: ['1','2','3','4'] },
+      { id: 3, name: 'Buzo Shadow Core', category: 'Buzos', price: 219000, short: 'Volumen premium.', colors: ['Negro', 'Gris'], featured: true, images: ['1','2','3','4'] },
+      { id: 4, name: 'Buzo Midnight Crew', category: 'Buzos', price: 239000, short: 'Caída pesada y suave.', colors: ['Negro', 'Carbón'], featured: true, images: ['1','2','3','4'] },
+      { id: 5, name: 'Chaqueta Asphalt Pro', category: 'Chaquetas', price: 299000, short: 'Protección ligera urbana.', colors: ['Negro', 'Grafito'], featured: true, images: ['1','2','3','4'] },
+      { id: 6, name: 'Chaqueta Urban Draft', category: 'Chaquetas', price: 329000, short: 'Estructura técnica premium.', colors: ['Negro'], featured: true, images: ['1','2','3','4'] },
+      { id: 7, name: 'Gorra Transit', category: 'Gorras', price: 99000, short: 'Finishing urbano clean.', colors: ['Negro', 'Gris'], featured: false, images: ['1','2','3','4'] }
     ]
   };
 
@@ -143,18 +36,10 @@ const UIModule = (() => {
     featuredIndex: 0,
     featuredLooping: false,
     modalImageIndex: 0,
-    touchStartX: 0,
-    touchCurrentX: 0,
-    touchStartTime: 0,
-    dragActive: false,
-    dragBaseTranslate: 0
+    mobileScrollDebounce: null
   };
 
-  const formatCOP = (value) => new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    maximumFractionDigits: 0
-  }).format(value);
+  const formatCOP = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
 
   const refs = {
     heroLeftCurrent: document.getElementById('heroLeftCurrent'),
@@ -171,27 +56,20 @@ const UIModule = (() => {
     showcaseA: document.getElementById('showcaseImageA'),
     showcaseB: document.getElementById('showcaseImageB'),
     showcaseCopy: document.getElementById('showcaseCopy'),
-    modalImage: document.getElementById('modalImage')
+    modalGalleryTrack: document.getElementById('modalGalleryTrack')
   };
 
-  function getFeatured() {
-    return DataModule.storeData.products.filter((item) => item.featured).slice(0, 6);
-  }
-
-  function getVisibleItems() {
-    return window.matchMedia('(max-width: 900px)').matches ? 1 : 3;
-  }
+  const getFeatured = () => DataModule.storeData.products.filter((item) => item.featured).slice(0, 6);
+  const isMobileCarousel = () => window.matchMedia('(max-width: 900px)').matches;
+  const getVisibleItems = () => isMobileCarousel() ? 1 : 3;
 
   function cardTemplate(product, className = 'product-card') {
     return `
       <article class="${className}" data-id="${product.id}">
-        <img src="${product.images[0]}" alt="${product.name}" />
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="${product.name}" />
         <h3>${product.name}</h3>
         <p>${product.category} · ${formatCOP(product.price)}</p>
-        <div class="tooltip">
-          <p>${product.short}</p>
-          <strong>${formatCOP(product.price)}</strong>
-        </div>
+        <div class="tooltip"><p>${product.short}</p><strong>${formatCOP(product.price)}</strong></div>
       </article>
     `;
   }
@@ -234,6 +112,13 @@ const UIModule = (() => {
     const step = getStepSize();
     if (!step) return;
 
+    if (isMobileCarousel()) {
+      refs.featuredTrack.style.transition = 'none';
+      refs.featuredTrack.style.transform = 'none';
+      refs.carouselViewport.scrollTo({ left: state.featuredIndex * step, behavior: withTransition ? 'smooth' : 'auto' });
+      return;
+    }
+
     refs.featuredTrack.style.transition = withTransition ? 'transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1)' : 'none';
     refs.featuredTrack.style.transform = `translateX(-${state.featuredIndex * step}px)`;
   }
@@ -243,6 +128,9 @@ const UIModule = (() => {
     state.featuredLooping = true;
     state.featuredIndex += direction;
     updateFeaturedPosition(true);
+    if (isMobileCarousel()) {
+      window.setTimeout(normalizeInfinitePosition, 420);
+    }
   }
 
   function normalizeInfinitePosition() {
@@ -260,6 +148,20 @@ const UIModule = (() => {
     }
 
     state.featuredLooping = false;
+  }
+
+  function syncIndexFromMobileScroll() {
+    if (!isMobileCarousel()) return;
+    const step = getStepSize();
+    if (!step) return;
+
+    const rawIndex = Math.round(refs.carouselViewport.scrollLeft / step);
+    state.featuredIndex = rawIndex;
+
+    clearTimeout(state.mobileScrollDebounce);
+    state.mobileScrollDebounce = setTimeout(() => {
+      normalizeInfinitePosition();
+    }, 120);
   }
 
   function renderFeatured() {
@@ -305,42 +207,21 @@ const UIModule = (() => {
     refs.mainContent.classList.remove('hidden');
   }
 
-  function ensureModalGalleryControls() {
-    if (document.getElementById('modalPrev')) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'modal-media';
-    refs.modalImage.parentNode.insertBefore(wrapper, refs.modalImage);
-    wrapper.appendChild(refs.modalImage);
-
-    const prev = document.createElement('button');
-    prev.id = 'modalPrev';
-    prev.className = 'modal-gallery-nav prev';
-    prev.type = 'button';
-    prev.textContent = '←';
-
-    const next = document.createElement('button');
-    next.id = 'modalNext';
-    next.className = 'modal-gallery-nav next';
-    next.type = 'button';
-    next.textContent = '→';
-
-    wrapper.appendChild(prev);
-    wrapper.appendChild(next);
-
-    prev.addEventListener('click', () => changeModalImage(-1));
-    next.addEventListener('click', () => changeModalImage(1));
-  }
-
   function updateModalImage() {
     if (!state.selected) return;
-    const images = state.selected.images;
-    const safeIndex = ((state.modalImageIndex % images.length) + images.length) % images.length;
-    state.modalImageIndex = safeIndex;
-    refs.modalImage.src = images[safeIndex] || '';
+    const total = state.selected.images.length;
+    state.modalImageIndex = ((state.modalImageIndex % total) + total) % total;
+
+    refs.modalGalleryTrack.innerHTML = state.selected.images.map((_, index) =>
+      `<div class="modal-placeholder ${index === state.modalImageIndex ? 'active' : ''}"></div>`
+    ).join('');
   }
 
-  function changeModalImage(direction) {
+  function changeModalImage(direction, event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     if (!state.selected) return;
     state.modalImageIndex += direction;
     updateModalImage();
@@ -355,12 +236,14 @@ const UIModule = (() => {
     state.selected = product;
     state.modalImageIndex = 0;
     updateModalImage();
+
     document.getElementById('modalTitle').textContent = product.name;
     document.getElementById('modalDescription').textContent = product.short;
     document.getElementById('modalPrice').textContent = formatCOP(product.price);
     document.getElementById('modalColor').innerHTML = product.colors.map((color) => `<option value="${color}">${color}</option>`).join('');
     document.getElementById('modalQty').value = 1;
     document.getElementById('buyNowBtn').href = createProductWhatsAppLink(product, 1, product.colors[0]);
+
     refs.overlay.classList.remove('hidden');
     requestAnimationFrame(() => refs.overlay.classList.add('show'));
   }
@@ -420,10 +303,21 @@ const UIModule = (() => {
       refs.heroRightCurrent.classList.add('is-exiting');
 
       setTimeout(() => {
-        refs.heroLeftCurrent.style.backgroundImage = refs.heroLeftNext.style.backgroundImage || 'none';
-        refs.heroRightCurrent.style.backgroundImage = refs.heroRightNext.style.backgroundImage || 'none';
         refs.heroLeftCurrent.classList.remove('is-exiting');
         refs.heroRightCurrent.classList.remove('is-exiting');
+        refs.heroLeftCurrent.style.backgroundImage = 'none';
+        refs.heroRightCurrent.style.backgroundImage = 'none';
+        refs.heroLeftCurrent.classList.add('is-hidden');
+        refs.heroRightCurrent.classList.add('is-hidden');
+
+        setTimeout(() => {
+          refs.heroLeftCurrent.style.backgroundImage = refs.heroLeftNext.style.backgroundImage || 'none';
+          refs.heroRightCurrent.style.backgroundImage = refs.heroRightNext.style.backgroundImage || 'none';
+          requestAnimationFrame(() => {
+            refs.heroLeftCurrent.classList.remove('is-hidden');
+            refs.heroRightCurrent.classList.remove('is-hidden');
+          });
+        }, 500);
       }, 1200);
     }, 5000);
   }
@@ -460,59 +354,20 @@ const UIModule = (() => {
     }
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle('visible', entry.isIntersecting);
-      });
+      entries.forEach((entry) => entry.target.classList.toggle('visible', entry.isIntersecting));
     }, { threshold: 0.2 });
 
     sections.forEach((section) => observer.observe(section));
   }
 
-  function bindCarouselTouch() {
-    const viewport = refs.carouselViewport;
-
-    const onStart = (clientX) => {
-      state.dragActive = true;
-      state.touchStartX = clientX;
-      state.touchCurrentX = clientX;
-      state.touchStartTime = performance.now();
-      state.dragBaseTranslate = -state.featuredIndex * getStepSize();
-      refs.featuredTrack.style.transition = 'none';
-    };
-
-    const onMove = (clientX) => {
-      if (!state.dragActive) return;
-      state.touchCurrentX = clientX;
-      const delta = state.touchCurrentX - state.touchStartX;
-      refs.featuredTrack.style.transform = `translateX(${state.dragBaseTranslate + delta}px)`;
-    };
-
-    const onEnd = () => {
-      if (!state.dragActive) return;
-      const delta = state.touchCurrentX - state.touchStartX;
-      const elapsed = Math.max(1, performance.now() - state.touchStartTime);
-      const velocity = Math.abs(delta / elapsed);
-      const threshold = Math.min(80, getStepSize() * 0.18);
-
-      if (Math.abs(delta) > threshold || velocity > 0.5) {
-        moveFeatured(delta < 0 ? 1 : -1);
-      } else {
-        updateFeaturedPosition(true);
-        state.featuredLooping = false;
-      }
-
-      state.dragActive = false;
-    };
-
-    viewport.addEventListener('touchstart', (event) => onStart(event.touches[0].clientX), { passive: true });
-    viewport.addEventListener('touchmove', (event) => onMove(event.touches[0].clientX), { passive: true });
-    viewport.addEventListener('touchend', onEnd, { passive: true });
-  }
-
   function bindUI() {
-    ensureModalGalleryControls();
+    refs.featuredTrack.addEventListener('transitionend', () => {
+      if (!isMobileCarousel()) normalizeInfinitePosition();
+    });
+    refs.carouselViewport.addEventListener('scroll', syncIndexFromMobileScroll, { passive: true });
 
-    refs.featuredTrack.addEventListener('transitionend', normalizeInfinitePosition);
+    document.getElementById('modalPrev')?.addEventListener('click', (e) => changeModalImage(-1, e));
+    document.getElementById('modalNext')?.addEventListener('click', (e) => changeModalImage(1, e));
 
     document.getElementById('searchToggle').addEventListener('click', () => {
       const wrap = document.getElementById('searchWrap');
@@ -550,8 +405,6 @@ const UIModule = (() => {
     document.getElementById('nextFeatured').addEventListener('click', () => moveFeatured(1));
 
     window.addEventListener('resize', renderFeatured);
-
-    bindCarouselTouch();
 
     document.querySelector('.cart-toggle').addEventListener('click', () => refs.cartSidebar.classList.add('open'));
     document.getElementById('closeCart').addEventListener('click', () => refs.cartSidebar.classList.remove('open'));
