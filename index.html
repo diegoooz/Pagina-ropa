@@ -23,22 +23,20 @@
         </button>
         <input id="searchInput" type="search" placeholder="Buscar producto..." />
       </div>
-
       <button class="icon-btn cart-toggle" aria-label="Abrir carrito">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a1 1 0 001 .8h8.9a1 1 0 001-.7L21 7H7"/><circle cx="10" cy="19" r="1.4"/><circle cx="18" cy="19" r="1.4"/></svg>
         <span id="cartCount" class="counter">0</span>
       </button>
-
-      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      <button class="icon-btn" id="menuToggle" aria-label="Abrir menú">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
 
     <nav class="menu-panel" id="menuPanel">
-      <button class="menu-item" id="productsMenuBtn">
-        <span>Productos</span>
-        <span class="menu-expand" id="accordionToggle">▾</span>
-      </button>
+      <div class="menu-row">
+        <button class="menu-link" id="productsMenuBtn">Productos</button>
+        <button class="menu-arrow" id="accordionToggle" aria-label="Abrir subcategorías">▾</button>
+      </div>
       <div class="submenu" id="submenuCategories">
         <button data-category="Camisas">Camisas</button>
         <button data-category="Buzos">Buzos</button>
@@ -49,29 +47,42 @@
   </header>
 
   <main id="mainContent">
-    <section class="hero" id="hero">
-      <div class="hero-slider" id="heroSlider"></div>
+    <section class="hero reveal" id="hero">
+      <div class="hero-layer hero-left" id="heroLeft"></div>
+      <div class="hero-layer hero-right" id="heroRight"></div>
+      <div class="hero-overlay"></div>
     </section>
 
-    <section class="brand-concept reveal textured">
-      <p>Street tailoring para profesionales creativos. Minimalismo técnico, caída urbana y actitud precisa.</p>
+    <section class="brand-concept reveal" id="brandConcept">
+      <div class="concept-grid">
+        <p>Arquitectura textil.</p>
+        <p>Negro absoluto.</p>
+        <p>Actitud profesional callejera.</p>
+      </div>
     </section>
 
-    <section class="featured reveal textured-edge" id="featuredSection">
+    <section class="featured reveal" id="featuredSection">
       <div class="section-head">
-        <h2>Featured</h2>
+        <h2>Featured Carousel</h2>
         <button id="viewMoreBtn" class="link-btn">Ver más</button>
       </div>
-      <div class="featured-track" id="featuredTrack"></div>
+      <div class="carousel-wrap">
+        <button class="carousel-nav" id="prevFeatured" aria-label="Anterior">←</button>
+        <div class="carousel-track" id="featuredTrack"></div>
+        <button class="carousel-nav" id="nextFeatured" aria-label="Siguiente">→</button>
+      </div>
     </section>
 
-    <section class="gallery reveal" id="gallerySection">
-      <h2>Visual Gallery</h2>
-      <div class="gallery-grid" id="galleryGrid"></div>
+    <section class="showcase reveal" id="showcaseSection">
+      <div class="showcase-frame" id="showcaseFrame">
+        <img id="showcaseImageA" class="showcase-image active" alt="Showcase" />
+        <img id="showcaseImageB" class="showcase-image" alt="Showcase" />
+        <div class="showcase-copy" id="showcaseCopy"></div>
+      </div>
     </section>
   </main>
 
-  <section class="catalog hidden" id="catalog">
+  <section class="catalog hidden reveal" id="catalog">
     <div class="catalog-head">
       <h2>Catálogo Completo</h2>
       <button class="link-btn" id="backBtn">Volver</button>
@@ -91,33 +102,36 @@
     <ul id="cartItems"></ul>
     <div class="cart-footer">
       <p>Total: <strong id="cartTotal">$0</strong></p>
-      <a id="checkoutWhatsapp" class="checkout-btn" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+      <a id="checkoutWhatsapp" class="cta-btn" target="_blank" rel="noopener">Checkout WhatsApp</a>
     </div>
   </aside>
 
   <div class="overlay hidden" id="productOverlay">
-    <article class="product-popover" id="productPopover">
-      <button class="icon-btn close-modal" id="closeModal" aria-label="Cerrar">✕</button>
+    <article class="product-modal" id="productModal">
+      <button class="icon-btn close-modal" id="closeModal" aria-label="Cerrar modal">✕</button>
       <img id="modalImage" alt="Producto" />
       <div class="modal-info">
         <h3 id="modalTitle"></h3>
         <p id="modalDescription"></p>
-        <p id="modalPrice"></p>
+        <strong id="modalPrice"></strong>
         <label>Color
           <select id="modalColor"></select>
         </label>
         <label>Cantidad
           <input id="modalQty" type="number" min="1" value="1" />
         </label>
-        <button id="addToCartBtn" class="checkout-btn">Añadir al carrito</button>
+        <div class="modal-actions">
+          <button id="addToCartBtn" class="cta-btn">Añadir al carrito</button>
+          <a id="buyNowBtn" class="cta-btn ghost" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+        </div>
       </div>
     </article>
   </div>
 
-  <footer class="main-footer">
-    <div><h4>Contacto</h4><p>+57 300 000 0000</p><p>hello@uupstudio.com</p></div>
+  <footer class="main-footer reveal">
+    <div><h4>Legal</h4><p>Términos y condiciones</p><p>Política de privacidad</p></div>
     <div><h4>Redes</h4><p>Instagram</p><p>TikTok</p><p>Behance</p></div>
-    <div><h4>Legales</h4><p>Términos y condiciones</p><p>Política de privacidad</p></div>
+    <div><h4>Contacto</h4><p>hello@uupstudio.com</p><p>+57 300 000 0000</p></div>
   </footer>
 
   <script src="app.js"></script>
