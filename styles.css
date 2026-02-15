@@ -68,8 +68,8 @@ section { padding: 5rem 1.4rem 3.2rem; }
   background-size: cover; background-position: center;
   transition: opacity var(--time) var(--ease);
 }
-.hero-left { clip-path: polygon(0 0, 68% 0, 42% 100%, 0 100%); }
-.hero-right { clip-path: polygon(68% 0, 100% 0, 100% 100%, 42% 100%); }
+.hero-left { clip-path: polygon(0 0, 68% 0, 42% 100%, 0 100%); background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80"); }
+.hero-right { clip-path: polygon(68% 0, 100% 0, 100% 100%, 42% 100%); background-image: url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=1400&q=80"); }
 .hero-overlay {
   position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(120deg, transparent 48%, rgba(255,255,255,0.15) 50%, transparent 52%);
@@ -180,8 +180,9 @@ section { padding: 5rem 1.4rem 3.2rem; }
 }
 .main-footer p { color: var(--muted); margin-top: .35rem; }
 
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity var(--time) var(--ease), transform var(--time) var(--ease); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 1; transform: translateY(0); }
+.js-enabled .reveal { opacity: 0; transform: translateY(26px); transition: opacity var(--time) var(--ease), transform var(--time) var(--ease); }
+.js-enabled .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 900px) {
   .carousel-track { grid-template-columns: 1fr; }
