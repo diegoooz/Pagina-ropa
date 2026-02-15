@@ -132,9 +132,18 @@ const UIModule = (() => {
     state.featuredLooping = true;
     state.featuredIndex += direction;
     updateFeaturedPosition(true);
-    if (isMobileCarousel()) {
-      window.setTimeout(normalizeInfinitePosition, 420);
-    }
+  }
+
+
+  function instantMobileReposition(index) {
+    refs.carouselViewport.classList.add('no-snap');
+    state.featuredIndex = index;
+    updateFeaturedPosition(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        refs.carouselViewport.classList.remove('no-snap');
+      });
+    });
   }
 
   function normalizeInfinitePosition() {
@@ -144,11 +153,17 @@ const UIModule = (() => {
     const maxIndex = visible + featured.length - 1;
 
     if (state.featuredIndex > maxIndex) {
-      state.featuredIndex = minIndex;
-      updateFeaturedPosition(false);
+      if (isMobileCarousel()) instantMobileReposition(minIndex);
+      else {
+        state.featuredIndex = minIndex;
+        updateFeaturedPosition(false);
+      }
     } else if (state.featuredIndex < minIndex) {
-      state.featuredIndex = maxIndex;
-      updateFeaturedPosition(false);
+      if (isMobileCarousel()) instantMobileReposition(maxIndex);
+      else {
+        state.featuredIndex = maxIndex;
+        updateFeaturedPosition(false);
+      }
     }
 
     state.featuredLooping = false;
