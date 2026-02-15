@@ -37,7 +37,7 @@ const DataModule = (() => {
 })();
 
 const UIModule = (() => {
-  const state = { cart: [], selected: null, filter: 'Todos', search: '', featuredPage: 0 };
+  const state = { cart: [], selected: null, filter: 'Todos', search: '', featuredIndex: 0 };
   const formatCOP = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
 
   const refs = {
@@ -53,6 +53,14 @@ const UIModule = (() => {
     showcaseB: document.getElementById('showcaseImageB'),
     showcaseCopy: document.getElementById('showcaseCopy')
   };
+
+  function getFeatured() {
+    return DataModule.storeData.products.filter((item) => item.featured).slice(0, 6);
+  }
+
+  function getVisibleItems() {
+    return window.matchMedia('(max-width: 900px)').matches ? 1 : 3;
+  }
 
   function cardTemplate(product, className = 'product-card') {
     return `
@@ -77,21 +85,21 @@ const UIModule = (() => {
     });
   }
 
-  function getFeaturedPagination() {
-    const featured = DataModule.storeData.products.filter((item) => item.featured).slice(0, 6);
-    const perView = window.matchMedia('(max-width: 900px)').matches ? 1 : 3;
-    const pages = Math.max(1, Math.ceil(featured.length / perView));
-    return { featured, perView, pages };
+  function updateFeaturedPosition() {
+    const featured = getFeatured();
+    const visible = getVisibleItems();
+    const maxIndex = Math.max(0, featured.length - visible);
+    if (state.featuredIndex > maxIndex) state.featuredIndex = maxIndex;
+    if (state.featuredIndex < 0) state.featuredIndex = 0;
+
+    const step = 100 / visible;
+    refs.featuredTrack.style.transform = `translateX(-${state.featuredIndex * step}%)`;
   }
 
   function renderFeatured() {
-    const { featured, perView, pages } = getFeaturedPagination();
-    if (state.featuredPage >= pages) state.featuredPage = 0;
-    if (state.featuredPage < 0) state.featuredPage = pages - 1;
-    const start = state.featuredPage * perView;
-    const items = featured.slice(start, start + perView);
-    refs.featuredTrack.innerHTML = items.map((item) => cardTemplate(item)).join('');
+    refs.featuredTrack.innerHTML = getFeatured().map((item) => cardTemplate(item)).join('');
     bindProductClicks(refs.featuredTrack);
+    updateFeaturedPosition();
   }
 
   function renderCatalog() {
@@ -188,22 +196,24 @@ const UIModule = (() => {
     updateCart();
   }
 
-  function initHeroCrossfade() {
+  function initHeroDirectionalTransition() {
     const pairs = DataModule.storeData.heroPairs;
     let index = 0;
     refs.heroLeft.style.backgroundImage = `url(${pairs[0].left})`;
     refs.heroRight.style.backgroundImage = `url(${pairs[0].right})`;
+
     setInterval(() => {
       index = (index + 1) % pairs.length;
-      refs.heroLeft.style.opacity = '0.25';
-      refs.heroRight.style.opacity = '0.25';
+      refs.heroLeft.classList.add('is-exiting');
+      refs.heroRight.classList.add('is-exiting');
+
       setTimeout(() => {
         refs.heroLeft.style.backgroundImage = `url(${pairs[index].left})`;
         refs.heroRight.style.backgroundImage = `url(${pairs[index].right})`;
-        refs.heroLeft.style.opacity = '1';
-        refs.heroRight.style.opacity = '1';
-      }, 360);
-    }, 4000);
+        refs.heroLeft.classList.remove('is-exiting');
+        refs.heroRight.classList.remove('is-exiting');
+      }, 1200);
+    }, 5000);
   }
 
   function initShowcaseSlider() {
@@ -227,7 +237,7 @@ const UIModule = (() => {
       }
       refs.showcaseCopy.textContent = next.copy;
       activeIsA = !activeIsA;
-    }, 4000);
+    }, 5000);
   }
 
   function setupIntersectionObserver() {
@@ -280,17 +290,16 @@ const UIModule = (() => {
     document.getElementById('goHome').addEventListener('click', closeCatalog);
 
     document.getElementById('prevFeatured').addEventListener('click', () => {
-      state.featuredPage -= 1;
-      renderFeatured();
+      state.featuredIndex -= 1;
+      updateFeaturedPosition();
     });
 
     document.getElementById('nextFeatured').addEventListener('click', () => {
-      const { pages } = getFeaturedPagination();
-      state.featuredPage = (state.featuredPage + 1) % pages;
-      renderFeatured();
+      state.featuredIndex += 1;
+      updateFeaturedPosition();
     });
 
-    window.addEventListener('resize', renderFeatured);
+    window.addEventListener('resize', updateFeaturedPosition);
 
     document.querySelector('.cart-toggle').addEventListener('click', () => refs.cartSidebar.classList.add('open'));
     document.getElementById('closeCart').addEventListener('click', () => refs.cartSidebar.classList.remove('open'));
@@ -306,7 +315,7 @@ const UIModule = (() => {
   }
 
   function init() {
-    initHeroCrossfade();
+    initHeroDirectionalTransition();
     initShowcaseSlider();
     renderFilters();
     renderFeatured();
