@@ -113,7 +113,11 @@
   <div class="overlay hidden" id="productOverlay">
     <article class="product-modal" id="productModal">
       <button class="icon-btn close-modal" id="closeModal" aria-label="Cerrar modal">✕</button>
-      <img id="modalImage" alt="Producto" />
+      <div class="modal-media">
+        <button id="modalPrev" class="modal-gallery-nav prev" type="button" aria-label="Imagen anterior">←</button>
+        <div id="modalGalleryTrack" class="modal-gallery-track" aria-label="Galería de producto"></div>
+        <button id="modalNext" class="modal-gallery-nav next" type="button" aria-label="Imagen siguiente">→</button>
+      </div>
       <div class="modal-info">
         <h3 id="modalTitle"></h3>
         <p id="modalDescription"></p>
