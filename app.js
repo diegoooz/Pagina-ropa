@@ -41,8 +41,10 @@ const UIModule = (() => {
   const formatCOP = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
 
   const refs = {
-    heroLeft: document.getElementById('heroLeft'),
-    heroRight: document.getElementById('heroRight'),
+    heroLeftCurrent: document.getElementById('heroLeftCurrent'),
+    heroLeftNext: document.getElementById('heroLeftNext'),
+    heroRightCurrent: document.getElementById('heroRightCurrent'),
+    heroRightNext: document.getElementById('heroRightNext'),
     featuredTrack: document.getElementById('featuredTrack'),
     catalog: document.getElementById('catalog'),
     mainContent: document.getElementById('mainContent'),
@@ -199,19 +201,25 @@ const UIModule = (() => {
   function initHeroDirectionalTransition() {
     const pairs = DataModule.storeData.heroPairs;
     let index = 0;
-    refs.heroLeft.style.backgroundImage = `url(${pairs[0].left})`;
-    refs.heroRight.style.backgroundImage = `url(${pairs[0].right})`;
+
+    refs.heroLeftCurrent.style.backgroundImage = `url(${pairs[0].left})`;
+    refs.heroRightCurrent.style.backgroundImage = `url(${pairs[0].right})`;
 
     setInterval(() => {
       index = (index + 1) % pairs.length;
-      refs.heroLeft.classList.add('is-exiting');
-      refs.heroRight.classList.add('is-exiting');
+      const nextPair = pairs[index];
+
+      refs.heroLeftNext.style.backgroundImage = `url(${nextPair.left})`;
+      refs.heroRightNext.style.backgroundImage = `url(${nextPair.right})`;
+
+      refs.heroLeftCurrent.classList.add('is-exiting');
+      refs.heroRightCurrent.classList.add('is-exiting');
 
       setTimeout(() => {
-        refs.heroLeft.style.backgroundImage = `url(${pairs[index].left})`;
-        refs.heroRight.style.backgroundImage = `url(${pairs[index].right})`;
-        refs.heroLeft.classList.remove('is-exiting');
-        refs.heroRight.classList.remove('is-exiting');
+        refs.heroLeftCurrent.style.backgroundImage = refs.heroLeftNext.style.backgroundImage || 'none';
+        refs.heroRightCurrent.style.backgroundImage = refs.heroRightNext.style.backgroundImage || 'none';
+        refs.heroLeftCurrent.classList.remove('is-exiting');
+        refs.heroRightCurrent.classList.remove('is-exiting');
       }, 1200);
     }, 5000);
   }
