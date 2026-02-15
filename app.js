@@ -36,7 +36,11 @@ const UIModule = (() => {
     featuredIndex: 0,
     featuredLooping: false,
     modalImageIndex: 0,
-    mobileScrollDebounce: null
+    mobileScrollDebounce: null,
+    touchStartX: 0,
+    touchCurrentX: 0,
+    touchStartTime: 0,
+    touchDragging: false
   };
 
   const formatCOP = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
@@ -288,37 +292,48 @@ const UIModule = (() => {
   function initHeroDirectionalTransition() {
     const pairs = DataModule.storeData.heroPairs;
     let index = 0;
+    let cycling = false;
 
     refs.heroLeftCurrent.style.backgroundImage = `url(${pairs[0].left})`;
     refs.heroRightCurrent.style.backgroundImage = `url(${pairs[0].right})`;
 
     setInterval(() => {
+      if (cycling) return;
+      cycling = true;
+
       index = (index + 1) % pairs.length;
       const nextPair = pairs[index];
 
       refs.heroLeftNext.style.backgroundImage = `url(${nextPair.left})`;
       refs.heroRightNext.style.backgroundImage = `url(${nextPair.right})`;
 
-      refs.heroLeftCurrent.classList.add('is-exiting');
-      refs.heroRightCurrent.classList.add('is-exiting');
+      // Ensure browser paints next layers before current layers start exiting.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          refs.heroLeftCurrent.classList.add('is-exiting');
+          refs.heroRightCurrent.classList.add('is-exiting');
 
-      setTimeout(() => {
-        refs.heroLeftCurrent.classList.remove('is-exiting');
-        refs.heroRightCurrent.classList.remove('is-exiting');
-        refs.heroLeftCurrent.style.backgroundImage = 'none';
-        refs.heroRightCurrent.style.backgroundImage = 'none';
-        refs.heroLeftCurrent.classList.add('is-hidden');
-        refs.heroRightCurrent.classList.add('is-hidden');
+          setTimeout(() => {
+            refs.heroLeftCurrent.classList.remove('is-exiting');
+            refs.heroRightCurrent.classList.remove('is-exiting');
+            refs.heroLeftCurrent.style.backgroundImage = 'none';
+            refs.heroRightCurrent.style.backgroundImage = 'none';
+            refs.heroLeftCurrent.classList.add('is-hidden');
+            refs.heroRightCurrent.classList.add('is-hidden');
 
-        setTimeout(() => {
-          refs.heroLeftCurrent.style.backgroundImage = refs.heroLeftNext.style.backgroundImage || 'none';
-          refs.heroRightCurrent.style.backgroundImage = refs.heroRightNext.style.backgroundImage || 'none';
-          requestAnimationFrame(() => {
-            refs.heroLeftCurrent.classList.remove('is-hidden');
-            refs.heroRightCurrent.classList.remove('is-hidden');
-          });
-        }, 500);
-      }, 1200);
+            setTimeout(() => {
+              refs.heroLeftCurrent.style.backgroundImage = refs.heroLeftNext.style.backgroundImage || 'none';
+              refs.heroRightCurrent.style.backgroundImage = refs.heroRightNext.style.backgroundImage || 'none';
+
+              requestAnimationFrame(() => {
+                refs.heroLeftCurrent.classList.remove('is-hidden');
+                refs.heroRightCurrent.classList.remove('is-hidden');
+                cycling = false;
+              });
+            }, 500);
+          }, 1200);
+        });
+      });
     }, 5000);
   }
 
@@ -360,11 +375,51 @@ const UIModule = (() => {
     sections.forEach((section) => observer.observe(section));
   }
 
+
+  function bindCarouselTouchSwipe() {
+    const viewport = refs.carouselViewport;
+
+    const onTouchStart = (event) => {
+      if (!isMobileCarousel() || state.featuredLooping) return;
+      const touch = event.touches[0];
+      state.touchStartX = touch.clientX;
+      state.touchCurrentX = touch.clientX;
+      state.touchStartTime = performance.now();
+      state.touchDragging = true;
+    };
+
+    const onTouchMove = (event) => {
+      if (!state.touchDragging) return;
+      state.touchCurrentX = event.touches[0].clientX;
+    };
+
+    const onTouchEnd = () => {
+      if (!state.touchDragging) return;
+      state.touchDragging = false;
+
+      const deltaX = state.touchCurrentX - state.touchStartX;
+      const elapsed = Math.max(1, performance.now() - state.touchStartTime);
+      const velocity = Math.abs(deltaX / elapsed);
+      const step = getStepSize();
+      const threshold = Math.min(64, step * 0.18);
+
+      if (Math.abs(deltaX) > threshold || velocity > 0.45) {
+        moveFeatured(deltaX < 0 ? 1 : -1);
+      }
+    };
+
+    viewport.addEventListener('touchstart', onTouchStart, { passive: true });
+    viewport.addEventListener('touchmove', onTouchMove, { passive: true });
+    viewport.addEventListener('touchend', onTouchEnd, { passive: true });
+    viewport.addEventListener('touchcancel', () => { state.touchDragging = false; }, { passive: true });
+  }
+
   function bindUI() {
     refs.featuredTrack.addEventListener('transitionend', () => {
       if (!isMobileCarousel()) normalizeInfinitePosition();
     });
     refs.carouselViewport.addEventListener('scroll', syncIndexFromMobileScroll, { passive: true });
+    bindCarouselTouchSwipe();
 
     document.getElementById('modalPrev')?.addEventListener('click', (e) => changeModalImage(-1, e));
     document.getElementById('modalNext')?.addEventListener('click', (e) => changeModalImage(1, e));
