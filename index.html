@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Underground Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="brand">UUP STUDIO</div>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Buscar">🔍</button>
+      <button class="icon-btn cart-toggle" aria-label="Abrir carrito">🛒 <span id="cartCount" class="counter">0</span></button>
+      <button class="icon-btn menu-toggle" aria-label="Abrir menú">☰</button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="#catalog" data-category="Camisas">Camisas</a>
+      <a href="#catalog" data-category="Buzos">Buzos</a>
+      <a href="#catalog" data-category="Chaquetas">Chaquetas</a>
+      <a href="#catalog" data-category="Gorras">Gorras</a>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+    <section class="hero" id="hero">
+      <div class="hero-slider" id="heroSlider"></div>
+    </section>
+
+    <section class="brand-concept reveal">
+      <p>
+        Siluetas urbanas, precisión profesional. Una colección monocromática para quienes convierten la calle en su oficina creativa.
+      </p>
+    </section>
+
+    <section class="featured reveal" id="featuredSection">
+      <div class="section-head">
+        <h2>Featured</h2>
+        <button id="viewMoreBtn" class="cta">Ver más</button>
+      </div>
+      <div class="featured-track" id="featuredTrack"></div>
+      <div class="featured-preview" id="featuredPreview"></div>
+    </section>
+
+    <section class="gallery reveal" id="gallerySection">
+      <h2>Visual Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+  </main>
+
+  <section class="catalog hidden" id="catalog">
+    <div class="section-head">
+      <h2>Catálogo Completo</h2>
+      <button id="backBtn" class="cta">Volver</button>
+    </div>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </section>
+
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-head">
+      <h3>Carrito</h3>
+      <button class="icon-btn" id="closeCart">✕</button>
+    </div>
+    <ul id="cartItems"></ul>
+    <div class="cart-footer">
+      <p>Total: <strong id="cartTotal">$0</strong></p>
+      <a id="checkoutWhatsapp" class="cta" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+    </div>
+  </aside>
+
+  <div class="modal hidden" id="productModal">
+    <div class="modal-content">
+      <button class="icon-btn close-modal" id="closeModal">✕</button>
+      <img id="modalImage" alt="Producto" />
+      <div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalPrice"></p>
+        <label>Color
+          <select id="modalColor"></select>
+        </label>
+        <label>Cantidad
+          <input id="modalQty" type="number" min="1" value="1" />
+        </label>
+        <button id="addToCartBtn" class="cta">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <div>
+      <h4>Contacto</h4>
+      <p>+57 300 000 0000</p>
+      <p>hello@uupstudio.com</p>
+    </div>
+    <div>
+      <h4>Redes</h4>
+      <p>Instagram</p>
+      <p>TikTok</p>
+      <p>Pinterest</p>
+    </div>
+    <div>
+      <h4>Legales</h4>
+      <p>Términos y condiciones</p>
+      <p>Política de privacidad</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
