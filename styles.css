@@ -90,6 +90,11 @@ section { padding: 5rem 1.4rem 3rem; }
 .carousel-wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .6rem; }
 .carousel-nav { font-size: 1.3rem; color: #d2d2d2; }
 .carousel-viewport { overflow: hidden; touch-action: pan-x pan-y; }
+.carousel-viewport.no-snap {
+  scroll-snap-type: none !important;
+  scroll-behavior: auto !important;
+}
+
 .carousel-track {
   display: flex;
   gap: 20px;
